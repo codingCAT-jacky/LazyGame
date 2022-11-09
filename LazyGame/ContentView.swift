@@ -13,6 +13,7 @@ struct ContentView: View {
   @State private var Name = ""
   @State private var GenderIndex = 0
   @State private var StudentIndex = 0
+  @State private var showAlert = false
       var body: some View {
         NavigationView{
           ZStack{
@@ -39,15 +40,38 @@ struct ContentView: View {
                         }
                       })
                     }.offset(x: 0, y: 0)
+                Button(action: {
+                      showAlert = true
+                }) {
+                      VStack {
+                         Text("確認")
+                          .font(.system(size: 25))
+                          .foregroundColor(Color.white)
+                          .background(Color.red)
 
-              NavigationLink(
-                  destination: Page1View(gender: Gender[GenderIndex] , StudentType: StudentType[StudentIndex]),
-                  label: {
-                    Text(" 我要翹課！")
-                      .foregroundColor(.red)
-                      .border(Color.blue)
-                      .clipped()
-                  }).offset(x: 0, y: -100)
+
+                      }
+                }.alert(isPresented: $showAlert, content: {
+                  if(Name==""){
+                    return Alert(title: Text("你沒名字"))
+                  }
+                  else{
+                    return Alert(title: Text("懶學生已就緒！"))
+                  }
+
+              }).offset(x: 0, y: -130)
+
+                NavigationLink(
+                    destination: Page1View(gender: Gender[GenderIndex] , StudentType: StudentType[StudentIndex]),
+                    label: {
+                      Text(" 我要翹課！")
+                        .font(.system(size: 35))
+                        .foregroundColor(Color.white)
+                        .background(Color.red)
+
+                    }).offset(x: 0, y:-60)
+
+
               
             }
 
