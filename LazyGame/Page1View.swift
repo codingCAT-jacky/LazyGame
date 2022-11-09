@@ -10,6 +10,7 @@ import SwiftUI
 struct Page1View: View {
   @State private var isExpanded1 = true
   @State private var isExpanded2 = false
+  @State private var TeacherIndex = 1
   @State private var bgcolor = Color.gray
     let studentarr = [
       Student(name: "小學生", difficulty: 3),
@@ -19,11 +20,11 @@ struct Page1View: View {
       Student(name: "研究生", difficulty: 0)
     ]
     let teacherarr = [
-      teacher(name:"彼得潘" , gender:"男"),
-      teacher(name:"馬尚彬" , gender:"男"),
-      teacher(name:"程華懷" , gender:"男"),
-      teacher(name:"張雅惠" , gender:"女"),
-      teacher(name:"胖虎" , gender:"男")
+      teacher(name:"彼得潘" , gender:"男", hard: "0", description: "輕鬆翹課 沒問題的"),
+      teacher(name:"馬尚彬" , gender:"男", hard: "3", description: ""),
+      teacher(name:"程華懷" , gender:"男", hard: "5", description: ""),
+      teacher(name:"張雅惠" , gender:"女", hard: "1", description: ""),
+      teacher(name:"胖虎" , gender:"男", hard: "10", description: "")
     ]
     let gender : String
     let StudentType : String
@@ -45,25 +46,37 @@ struct Page1View: View {
             DisclosureGroup(isExpanded: $isExpanded1) {
               VStack(alignment: .leading) {
                   ForEach(teacherarr.indices) { teacher1 in
-                    DisclosureGroup(isExpanded: $isExpanded2){
+                    DisclosureGroup(teacherarr[teacher1].name){
                       VStack{
-                        Text(teacherarr[teacher1].gender)
+                        Text("性別:" + teacherarr[teacher1].gender )
+                        HStack{
+                            Text("難易度:" + teacherarr[teacher1].hard)
+                            Image(systemName:"star")
+                        }
+                        Text(teacherarr[teacher1].description)
                       }
 
-                    } label:{
-                      Text(teacherarr[teacher1].name)
-                    }
+                    } 
                   }
               }
+                Picker(selection: $TeacherIndex, label: Text("選擇要挑戰的老師"), content: {
+                  ForEach(teacherarr.indices){ item in
+                    Text(teacherarr[item].name)
+                  }
+                    Text("隨機")
+                }).pickerStyle(SegmentedPickerStyle())
             } label: {
                 Label("可挑戰的老師", systemImage: "lock.open.fill")
             }
+            
           }
-
+            
+            
+            
           ColorPicker("為你的懶學生選顏色", selection: $bgcolor)
         }
       }.background(bgcolor)
-
+        
     }
 }
 
@@ -83,7 +96,9 @@ struct teacher: Identifiable{
     let id = UUID()
     let name: String
     let gender: String
-
+    let hard: String
+    let description: String
+    
 }
 
 

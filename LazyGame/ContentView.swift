@@ -14,6 +14,7 @@ struct ContentView: View {
   @State private var GenderIndex = 0
   @State private var StudentIndex = 0
   @State private var showAlert = false
+  @State private var showpage1 = false
       var body: some View {
         NavigationView{
           ZStack{
@@ -60,16 +61,20 @@ struct ContentView: View {
                   }
 
               }).offset(x: 0, y: -130)
+                Button{
+                    showpage1 = true
+                }label: {
+                    Text(" 我要翹課！")
+                      .font(.system(size: 35))
+                      .foregroundColor(Color.white)
+                      .background(Color.red)
 
-                NavigationLink(
-                    destination: Page1View(gender: Gender[GenderIndex] , StudentType: StudentType[StudentIndex]),
-                    label: {
-                      Text(" 我要翹課！")
-                        .font(.system(size: 35))
-                        .foregroundColor(Color.white)
-                        .background(Color.red)
-
-                    }).offset(x: 0, y:-60)
+                  }
+                .fullScreenCover(isPresented: $showpage1, content: {
+                    Page1View(gender: Gender[GenderIndex] , StudentType: StudentType[StudentIndex])
+                })
+                .offset(x: 0, y:-60)
+               
 
 
               
