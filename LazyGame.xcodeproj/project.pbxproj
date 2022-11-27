@@ -13,6 +13,7 @@
 		4BA630AE291933EE004CA174 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BA630AD291933EE004CA174 /* Preview Assets.xcassets */; };
 		4BA630B729194A9F004CA174 /* Page1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA630B629194A9F004CA174 /* Page1View.swift */; };
 		4BA630BA291A6F15004CA174 /* Page2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA630B9291A6F15004CA174 /* Page2View.swift */; };
+		57546A712933ECFD00373851 /* page3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57546A702933ECFD00373851 /* page3View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4BA630AF291933EE004CA174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BA630B629194A9F004CA174 /* Page1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page1View.swift; sourceTree = "<group>"; };
 		4BA630B9291A6F15004CA174 /* Page2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page2View.swift; sourceTree = "<group>"; };
+		57546A702933ECFD00373851 /* page3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = page3View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				4BA630A6291933E2004CA174 /* LazyGameApp.swift */,
 				4BA630A8291933E2004CA174 /* ContentView.swift */,
+				57546A702933ECFD00373851 /* page3View.swift */,
 				4BA630B629194A9F004CA174 /* Page1View.swift */,
 				4BA630B9291A6F15004CA174 /* Page2View.swift */,
 				4BA630AA291933EE004CA174 /* Assets.xcassets */,
@@ -146,6 +149,7 @@
 			files = (
 				4BA630BA291A6F15004CA174 /* Page2View.swift in Sources */,
 				4BA630B729194A9F004CA174 /* Page1View.swift in Sources */,
+				57546A712933ECFD00373851 /* page3View.swift in Sources */,
 				4BA630A9291933E2004CA174 /* ContentView.swift in Sources */,
 				4BA630A7291933E2004CA174 /* LazyGameApp.swift in Sources */,
 			);

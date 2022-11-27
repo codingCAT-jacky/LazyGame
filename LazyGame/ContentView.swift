@@ -9,12 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
   let Gender = ["男","女"]
-  let StudentType = ["小學生", "國中生", "高中生", "大學生", "研究生"]
+ 
   @State private var Name = ""
   @State private var GenderIndex = 0
   @State private var StudentIndex = 0
   @State private var showAlert = false
   @State private var showpage1 = false
+   
       var body: some View {
         NavigationView{
           ZStack{
@@ -29,15 +30,15 @@ struct ContentView: View {
                 .offset(x: 0, y: 0)
 
                     Form{
-                          TextField("輸入學生名", text: $Name)
+                      TextField("輸入學生名", text: $Name)
                       Picker(selection: $GenderIndex, label: Text("性別"), content: {
                         ForEach(Gender.indices){ item in
                           Text(Gender[item])
                         }
                       })
                       Picker(selection: $StudentIndex, label: Text("學生類型"), content: {
-                        ForEach(StudentType.indices){ item in
-                          Text(StudentType[item])
+                        ForEach(Student.demoStudent.indices){ item in
+                            Text(Student.demoStudent[item].name)
                         }
                       })
                     }.offset(x: 0, y: 0)
@@ -71,7 +72,7 @@ struct ContentView: View {
 
                   }
                 .fullScreenCover(isPresented: $showpage1, content: {
-                    Page1View(gender: Gender[GenderIndex] , StudentType: StudentType[StudentIndex])
+                    Page1View(gender: Gender[GenderIndex] , StudentType: Student.demoStudent[StudentIndex].name, name:Name)
                 })
                 .offset(x: 0, y:-60)
                
