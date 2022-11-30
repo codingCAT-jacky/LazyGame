@@ -15,7 +15,7 @@ struct Page2View: View {
     @State private var forward = ""
     @State private var num = 0
     var dateRange: ClosedRange<Date> {
-            Date()...DateComponents(calendar: .current, year: 2022, month: 12, day: 4).date!
+            Date()...DateComponents(calendar: .current, year: 2022, month: 12, day: 6).date!
     }
     let gender: String
     let StudentType : String
@@ -31,6 +31,7 @@ struct Page2View: View {
                         .font(.system(size: 18))
                         .background(Color.yellow)
 //                        .frame(width: 400, height: 45, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    let _ = print("selectedTeacher", selectedTeacher)
                     Image(selectedTeacher)
                         .resizable()
                         .scaledToFit()
@@ -44,21 +45,23 @@ struct Page2View: View {
                 List{
                         DatePicker("選擇翹課日", selection: $pickedTime, in: dateRange, displayedComponents: .date)
                         Text(pickedTime, style: .date)
-                }
-                if(success)
-                {
-                    VStack{
-                        Text("恭喜"+selectedTeacher+"沒抓到你，你保住了學分！")
-                        Button("再次挑戰")
-                        {
-                            showsecondpage.toggle()
+                    if(success)
+                    {
+                        VStack{
+                            Text("恭喜"+selectedTeacher+"沒抓到你，你保住了學分！")
+                            Button("再次挑戰")
+                            {
+                                showsecondpage.toggle()
+                            }
                         }
                     }
                 }
+                
 //                Text("確認")
 //                    .background(Color.red)
 //                    .font(.system(size: 30))
 //                    .contextMenu {
+                
                 HStack{
                     Button {
                         showsecondpage.toggle()
@@ -86,9 +89,10 @@ struct Page2View: View {
                     } label: {
                         Label("確定翹課日期", systemImage: "location.circle")
                     }
-                    .sheet(isPresented: $showThirdpage) {
-                        page3View(teacher1:forward)
-                    }
+                    .sheet(isPresented: $showThirdpage, content: {
+                            page3View(teacher1:$forward) })
+                          
+                    
                 }
                         
 //                    }

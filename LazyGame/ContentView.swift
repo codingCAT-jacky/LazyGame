@@ -13,6 +13,7 @@ struct ContentView: View {
   @State private var Name = ""
   @State private var GenderIndex = 0
   @State private var StudentIndex = 0
+    @State var StudetType = ""
   @State private var showAlert = false
   @State private var showpage1 = false
    
@@ -36,10 +37,14 @@ struct ContentView: View {
                           Text(Gender[item])
                         }
                       })
+                     
                       Picker(selection: $StudentIndex, label: Text("學生類型"), content: {
                         ForEach(Student.demoStudent.indices){ item in
                             Text(Student.demoStudent[item].name)
                         }
+                      })
+                      .onChange(of: StudentIndex, perform: { value in
+                        StudetType = Student.demoStudent[value].name
                       })
                     }.offset(x: 0, y: 0)
                 Button(action: {
@@ -72,13 +77,9 @@ struct ContentView: View {
 
                   }
                 .fullScreenCover(isPresented: $showpage1, content: {
-                    Page1View(gender: Gender[GenderIndex] , StudentType: Student.demoStudent[StudentIndex].name, name:Name)
+                    Page1View(gender: Gender[GenderIndex] , StudentType: $StudetType, name:Name)
                 })
                 .offset(x: 0, y:-60)
-               
-
-
-              
             }
 
 

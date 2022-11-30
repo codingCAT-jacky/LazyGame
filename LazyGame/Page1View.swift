@@ -15,7 +15,7 @@ struct Page1View: View {
   @State private var showpage2 = false
     @State private var difficulty = 0
     let gender : String
-    let StudentType : String
+    @Binding var StudentType : String
     let name: String
     var filterStudents : [Student]{
         Student.demoStudent.filter{ (student1) -> Bool in
@@ -71,8 +71,10 @@ struct Page1View: View {
             }
             Spacer()
             Button{
+                print(StudentType)
                 showpage2 = true
                 difficulty = filterStudents[0].difficulty
+                print("filter=" + filterStudents[0].name)
             }label: {
                 Text(" 開始挑戰！")
                   .font(.system(size: 35))
@@ -80,7 +82,7 @@ struct Page1View: View {
                   .background(Color.red)
               }
             .fullScreenCover(isPresented: $showpage2, content: {
-                Page2View(gender: gender, StudentType: StudentType, name: name, selectedTeacher: teacher.demoTeacher[TeacherIndex].name, difficulty:difficulty, showsecondpage: $showpage2)
+                Page2View(gender: gender, StudentType: filterStudents[0].name, name: name, selectedTeacher: teacher.demoTeacher[TeacherIndex].name, difficulty:difficulty, showsecondpage: $showpage2)
             }).offset(x: 85, y: 0)
           }
            
@@ -95,7 +97,7 @@ struct Page1View: View {
 
 struct Page1View_Previews: PreviewProvider {
     static var previews: some View {
-        Page1View(gender: "男",StudentType: "小學生", name: "jacky")
+        Page1View(gender: "男",StudentType: .constant("小學生") , name: "jacky")
     }
 }
 
