@@ -126,7 +126,7 @@ struct teacher: Identifiable{
 extension teacher{
   static let demoTeacher = [
     teacher(name:"彼得潘" , gender:"男",  hard:"1", description: "輕鬆翹課 沒問題的"),
-    teacher(name:"馬尚彬" , gender:"男",  hard:"3", description: ""),
+    teacher(name:"馬哥" , gender:"男",  hard:"3", description: ""),
     teacher(name:"程大刀" , gender:"男",  hard:"5", description: ""),
     teacher(name:"泡芙阿姨" , gender:"女",  hard:"7", description: ""),
     teacher(name:"胖虎" , gender:"男",   hard:"9", description: "")
